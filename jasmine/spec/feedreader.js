@@ -107,9 +107,18 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+         beforeEach(function(done) {
+            setTimeout(function() {
+              value = 0
+              done();
+            }, 3000);
+          });
 
-         it("content changes when loadFeed is called", funtion(){
-
+         it("content changes when loadFeed is called", function(done){
+           value++;
+           expect(value).toBeGreaterThan(0);
+           expect($('.entry-link').length).toBeGreaterThan(1);
+           done();
          })
     })
 }());
